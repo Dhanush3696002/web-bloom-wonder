@@ -1,175 +1,87 @@
 
 
-## Razorpay Payment Gateway Integration (Client-Side Only)
+## Replace All Stock Images with AI-Generated Images
 
-### Overview
+### Scope
 
-This plan integrates Razorpay payment gateway directly into the donation form without requiring any backend/database. Users will be able to pay using UPI, cards, net banking, and wallets.
+The project has **~45 unique Unsplash stock image URLs** spread across **18 files**. These will be replaced with AI-generated images that depict realistic Indian NGO/community scenes matching AGR Foundation's work.
 
----
+### Image Categories & Count
 
-### Security Note
+| Category | Count | Description |
+|----------|-------|-------------|
+| Education | 8 | Indian classrooms, school supplies distribution, graduation, computer training |
+| Healthcare | 6 | Health camps, mobile clinics, senior care, medical checkups |
+| Community | 6 | Community gatherings, relief distribution, kitchen, awareness programs |
+| Sustainability | 3 | Tree planting, eco-packaging, environmental projects |
+| Events | 4 | Fundraiser gala, celebration, workshops |
+| Volunteers | 3 | Volunteer training, helping, team meetings |
+| Livelihood | 3 | Tailoring training, skill development, entrepreneurship |
+| Causes | 8 | Lake cleaning, wheelchair, water filter, medical treatment |
+| Focus Areas | 5 | Rural development, skill dev, social welfare, women's empowerment, environment |
+| News Hero | 1 | Newspaper/media background |
 
-The Razorpay **API Key** (starting with `rzp_live_`) is a **public key** and is safe to use in frontend code - this is how Razorpay is designed to work. The **Secret Key** should never be stored in code and is only needed for server-side operations (which we're not using in this client-side integration).
+**Total: ~47 unique images to generate**
 
----
+### Implementation Approach
 
-### How It Works
+Since there's no backend, I'll use the AI image generation capability to create each image, save them as local assets in `src/assets/generated/`, and update all file references.
 
+**Phase 1 - Generate images** (organized in subdirectories):
 ```text
-+------------------+     +-------------------+     +------------------+
-|   User fills     | --> |  Razorpay Checkout| --> |  Payment Success |
-|   donation form  |     |  Modal Opens      |     |  Toast & Reset   |
-+------------------+     +-------------------+     +------------------+
-                              |
-                              v
-                    +-------------------+
-                    | UPI, Cards, Net   |
-                    | Banking, Wallets  |
-                    +-------------------+
+src/assets/generated/
+├── education/        (8 images)
+├── healthcare/       (6 images)
+├── community/        (6 images)
+├── sustainability/   (3 images)
+├── events/           (4 images)
+├── volunteers/       (3 images)
+├── livelihood/       (3 images)
+├── causes/           (8 images)
+├── focus/            (5 images)
+└── news/             (1 image)
 ```
 
----
+**Phase 2 - Update all file references** across these files:
 
-### Implementation Details
+| File | Images to Replace |
+|------|-------------------|
+| `src/components/GallerySection.tsx` | 5 |
+| `src/components/CausesSection.tsx` | 5 |
+| `src/components/NewsSection.tsx` | 3 |
+| `src/pages/Gallery.tsx` | 14 |
+| `src/pages/Events.tsx` | 6 |
+| `src/pages/News.tsx` | 7 (includes hero bg) |
+| `src/pages/causes/LakeCleaning.tsx` | 4 |
+| `src/pages/causes/PhysicallyChallengedTreatment.tsx` | 4 |
+| `src/pages/causes/WaterFilterSchool.tsx` | 4 |
+| `src/pages/causes/WheelchairStudent.tsx` | 3 |
+| `src/pages/causes/WheelchairElderly.tsx` | 3 |
+| `src/pages/focus/EnvironmentalSafety.tsx` | 1 |
+| `src/pages/focus/RuralDevelopment.tsx` | 1 |
+| `src/pages/focus/SkillDevelopment.tsx` | 1 |
+| `src/pages/focus/SocialWelfare.tsx` | 1 |
+| `src/pages/focus/WomensEmpowerment.tsx` | 1 |
+| `src/pages/programs/Healthcare.tsx` | already uses local asset |
 
-#### Step 1: Create Razorpay Utility File
+### Image Generation Prompts
 
-**New File: `src/lib/razorpay.ts`**
+Each image will be generated with prompts specific to Indian rural/community context. Examples:
+- "Indian rural school classroom with children studying, natural lighting, realistic photograph"
+- "Free medical health camp in Indian village with doctors checking patients, outdoor setting"
+- "Indian women learning tailoring in a vocational training center, realistic photo"
+- "Temple lake in South India being cleaned by community volunteers"
 
-This file handles:
-- Dynamic loading of Razorpay checkout script
-- Storing the public API key
+### What Won't Change
 
-```typescript
-export const loadRazorpayScript = (): Promise<boolean> => {
-  return new Promise((resolve) => {
-    if (document.getElementById('razorpay-script')) {
-      resolve(true);
-      return;
-    }
-    const script = document.createElement('script');
-    script.id = 'razorpay-script';
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-};
-
-// Public API Key (safe to use in frontend)
-export const RAZORPAY_KEY_ID = 'rzp_live_S9ZfJn3TTaXZ9G';
-```
-
----
-
-#### Step 2: Create TypeScript Declarations
-
-**New File: `src/types/razorpay.d.ts`**
-
-Provides type safety for Razorpay's JavaScript SDK:
-
-```typescript
-interface RazorpayOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description?: string;
-  image?: string;
-  prefill?: { name?: string; email?: string; contact?: string };
-  notes?: Record<string, string>;
-  theme?: { color?: string };
-  handler?: (response: RazorpayResponse) => void;
-  modal?: { ondismiss?: () => void };
-}
-
-interface RazorpayResponse {
-  razorpay_payment_id: string;
-  razorpay_order_id?: string;
-  razorpay_signature?: string;
-}
-
-declare global {
-  interface Window {
-    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
-  }
-}
-```
-
----
-
-#### Step 3: Update DonationForm Component
-
-**File: `src/components/DonationForm.tsx`**
-
-Key changes:
-
-1. **Add imports** for Razorpay utilities and Loader icon
-2. **Add `isProcessing` state** to show loading during payment
-3. **Create `handlePayment` function** that:
-   - Loads the Razorpay script
-   - Opens the checkout modal with donation details
-   - Handles success/failure callbacks
-4. **Update submit handler** to call `handlePayment` on step 3
-5. **Update button** to show loading state
-
-**Payment Flow:**
-- Amount is converted to paise (multiply by 100)
-- Donor details are prefilled in the modal
-- On success: Show toast, reset form to step 1
-- On failure: Show error toast
-
-**Checkout Configuration:**
-- Currency: INR
-- Theme color: #800000 (maroon to match branding)
-- Prefill: Name, email, phone from form
-- Notes: Donation type, PAN, anonymous flag, dedication
-
----
-
-### Files Summary
-
-| File | Action | Purpose |
-|------|--------|---------|
-| `src/lib/razorpay.ts` | Create | Script loader and API key |
-| `src/types/razorpay.d.ts` | Create | TypeScript declarations |
-| `src/components/DonationForm.tsx` | Modify | Integrate payment checkout |
-
----
-
-### User Experience After Implementation
-
-1. User selects donation type (One-Time, Monthly, Sponsor)
-2. User selects or enters amount
-3. User fills personal details
-4. User reviews summary and clicks "Complete Donation"
-5. **Razorpay modal opens** with all payment options:
-   - UPI (Google Pay, PhonePe, Paytm, etc.)
-   - Credit/Debit Cards
-   - Net Banking (all major banks)
-   - Wallets
-6. After successful payment:
-   - Success toast appears
-   - Form resets to step 1
-   - User receives confirmation email from Razorpay
-
----
-
-### Payment Options Available
-
-- Google Pay, PhonePe, Paytm UPI
-- Visa, Mastercard, RuPay cards
-- 50+ banks for net banking
-- Paytm, Amazon Pay, PhonePe wallets
-- EMI options (if enabled in your Razorpay dashboard)
-
----
+- The 4 existing local hero images (`hero-volunteers.jpg`, `education-program.jpg`, `healthcare-program.jpg`, `livelihood-program.jpg`) stay as-is
+- The local gallery images (`biodegradable-bag.jpg`) stay as-is
+- The `agr-logo.svg` stays as-is
 
 ### Technical Notes
 
-- No backend required - payments go directly to your Razorpay account
-- Payment records are available in your Razorpay Dashboard
-- Razorpay handles all payment security (PCI-DSS compliant)
-- 80G receipts can be generated using donation notes captured
+- All generated images will be saved as `.jpg` files (~800px wide for gallery, ~1200px for hero images)
+- Import paths will use the `@/assets/generated/` alias
+- Images shared across multiple files (e.g., same healthcare image in Gallery and Events) will use a single generated file imported in both places
+- This will eliminate all external Unsplash dependencies, making the site load faster and work offline
 
