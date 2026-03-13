@@ -5,6 +5,11 @@ import { motion } from "framer-motion";
 import GalleryLightbox, { GalleryImage } from "./GalleryLightbox";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 import biodegradableBag from "@/assets/gallery/biodegradable-bag.jpg";
+import treePlanting from "@/assets/generated/sustainability/tree-planting.jpg";
+import classroomChildren from "@/assets/generated/education/classroom-children.jpg";
+import healthCamp from "@/assets/generated/healthcare/health-camp.jpg";
+import awarenessProgram from "@/assets/generated/community/awareness-program.jpg";
+import reliefDistribution from "@/assets/generated/community/relief-distribution.jpg";
 
 const featuredImages: GalleryImage[] = [
   {
@@ -16,35 +21,35 @@ const featuredImages: GalleryImage[] = [
   },
   {
     id: "2",
-    src: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800",
+    src: treePlanting,
     alt: "Tree plantation drive",
     category: "sustainability",
     caption: "Community tree plantation drive to increase green cover",
   },
   {
     id: "3",
-    src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",
+    src: classroomChildren,
     alt: "Children in classroom",
     category: "education",
     caption: "Students engaged in interactive learning at our education center",
   },
   {
     id: "4",
-    src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800",
+    src: healthCamp,
     alt: "Health camp",
     category: "healthcare",
     caption: "Free health check-up camp in rural community",
   },
   {
     id: "5",
-    src: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800",
+    src: awarenessProgram,
     alt: "Community gathering",
     category: "community",
     caption: "Community members participating in awareness program",
   },
   {
     id: "6",
-    src: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800",
+    src: reliefDistribution,
     alt: "Relief distribution",
     category: "community",
     caption: "Emergency relief distribution supporting families in need",

@@ -6,6 +6,13 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/Ani
 import { newsletterSchema } from "@/lib/validation";
 import { useFormSecurity } from "@/hooks/useFormSecurity";
 import { toast } from "sonner";
+import graduationImg from "@/assets/generated/education/graduation.jpg";
+import mobileClinicImg from "@/assets/generated/healthcare/mobile-clinic.jpg";
+import fundraiserGalaImg from "@/assets/generated/events/fundraiser-gala.jpg";
+import classroomImg from "@/assets/generated/education/classroom-children.jpg";
+import schoolSuppliesImg from "@/assets/generated/education/school-supplies.jpg";
+import communityKitchenImg from "@/assets/generated/community/community-kitchen.jpg";
+import newsHeroImg from "@/assets/generated/news/news-hero.jpg";
 
 // Newsletter Section Component with validation
 const NewsletterSection = () => {
@@ -87,7 +94,7 @@ const allNews: NewsArticle[] = [
     title: "100 Students Graduate from Our Skill Development Program",
     excerpt: "A milestone celebration as our latest batch of students complete vocational training, ready to enter the workforce with confidence.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800",
+    image: graduationImg,
     author: "AGR Foundation",
     date: "2026-01-15",
     category: "success-story",
@@ -99,7 +106,7 @@ const allNews: NewsArticle[] = [
     title: "Launching Mobile Health Clinics in Rural Areas",
     excerpt: "Our new initiative brings essential healthcare services directly to underserved communities through mobile medical units.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800",
+    image: mobileClinicImg,
     author: "Dr. Priya Sharma",
     date: "2026-01-10",
     category: "announcement",
@@ -111,7 +118,7 @@ const allNews: NewsArticle[] = [
     title: "Annual Charity Gala Raises Record ₹50 Lakhs",
     excerpt: "Our community came together for an unforgettable evening of giving, breaking all previous fundraising records.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+    image: fundraiserGalaImg,
     author: "AGR Foundation",
     date: "2026-01-05",
     category: "event",
@@ -123,7 +130,7 @@ const allNews: NewsArticle[] = [
     title: "Community Kitchen Now Feeds 500 People Daily",
     excerpt: "Thanks to generous donors, our community kitchen has expanded operations to serve more nutritious meals every day.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",
+    image: communityKitchenImg,
     author: "Vikram Patel",
     date: "2025-12-28",
     category: "community",
@@ -135,7 +142,7 @@ const allNews: NewsArticle[] = [
     title: "New Education Center Opens in Dharavi",
     excerpt: "A state-of-the-art learning facility now provides quality education to over 200 children from underserved families.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800",
+    image: schoolSuppliesImg,
     author: "AGR Foundation",
     date: "2025-12-20",
     category: "announcement",
@@ -147,7 +154,7 @@ const allNews: NewsArticle[] = [
     title: "Volunteer Spotlight: Meera Gupta's Inspiring Journey",
     excerpt: "Meet Meera, who has dedicated over 1,000 hours to teaching underprivileged children and transforming lives.",
     content: "Full article content here...",
-    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800",
+    image: classroomImg,
     author: "AGR Foundation",
     date: "2025-12-15",
     category: "success-story",
@@ -182,10 +189,13 @@ const News = () => {
       <main className="pt-14 md:pt-20">
         {/* Hero Section */}
         <section className="py-16 relative overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200')" }}
-          />
+          <div className="absolute inset-0">
+            <img
+              src={newsHeroImg}
+              alt="News hero"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="absolute inset-0 bg-primary/85" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection className="text-center text-primary-foreground">
@@ -203,7 +213,6 @@ const News = () => {
         <section className="py-8 border-b border-border">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              {/* Search */}
               <div className="relative max-w-md w-full">
                 <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <input
@@ -214,8 +223,6 @@ const News = () => {
                   className="w-full pl-12 pr-4 py-3 rounded-xl border border-border focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
-
-              {/* Category Filters */}
               <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
                 {categories.map((category) => (
                   <button
@@ -235,7 +242,6 @@ const News = () => {
           </div>
         </section>
 
-        {/* Featured Article */}
         {featuredArticle && (
           <section className="py-12">
             <div className="container mx-auto px-4">
@@ -246,7 +252,6 @@ const News = () => {
           </section>
         )}
 
-        {/* All Articles */}
         <section className="py-12 section-cream">
           <div className="container mx-auto px-4">
             {otherArticles.length > 0 ? (
@@ -267,7 +272,6 @@ const News = () => {
           </div>
         </section>
 
-        {/* Newsletter CTA */}
         <NewsletterSection />
       </main>
     </MobileLayout>

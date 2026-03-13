@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import { MobileLayout } from "@/components/mobile";
 import EventCard, { Event } from "@/components/EventCard";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import healthCamp from "@/assets/generated/healthcare/health-camp.jpg";
+import tailoringTraining from "@/assets/generated/livelihood/tailoring-training.jpg";
+import cleanupDrive from "@/assets/generated/sustainability/cleanup-drive.jpg";
+import fundraiserGala from "@/assets/generated/events/fundraiser-gala.jpg";
+import schoolSupplies from "@/assets/generated/education/school-supplies.jpg";
+import elderlyCare from "@/assets/generated/healthcare/elderly-care.jpg";
+import communityKitchen from "@/assets/generated/community/community-kitchen.jpg";
 
 const events: Event[] = [
   {
@@ -14,7 +21,7 @@ const events: Event[] = [
     time: "9:00 AM - 5:00 PM",
     location: "AGR Community Center, Sector 12, Mumbai",
     category: "health-camp",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800",
+    image: healthCamp,
     attendees: 150,
     isFeatured: true,
   },
@@ -26,7 +33,7 @@ const events: Event[] = [
     time: "10:00 AM - 4:00 PM",
     location: "Skill Development Center, Andheri East",
     category: "workshop",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800",
+    image: tailoringTraining,
     attendees: 45,
   },
   {
@@ -37,7 +44,7 @@ const events: Event[] = [
     time: "7:00 AM - 12:00 PM",
     location: "Various locations across Mumbai",
     category: "community",
-    image: "https://images.unsplash.com/photo-1558008258-3256797b43f3?w=800",
+    image: cleanupDrive,
     attendees: 200,
   },
   {
@@ -48,7 +55,7 @@ const events: Event[] = [
     time: "6:00 PM - 10:00 PM",
     location: "Grand Ballroom, Taj Hotel, Mumbai",
     category: "fundraiser",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+    image: fundraiserGala,
     attendees: 300,
     isFeatured: true,
   },
@@ -60,7 +67,7 @@ const events: Event[] = [
     time: "10:00 AM - 2:00 PM",
     location: "AGR Foundation Office, Bandra",
     category: "education",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800",
+    image: schoolSupplies,
     attendees: 100,
   },
   {
@@ -71,7 +78,7 @@ const events: Event[] = [
     time: "9:00 AM - 1:00 PM",
     location: "Community Hall, Dadar",
     category: "health-camp",
-    image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800",
+    image: elderlyCare,
     attendees: 80,
   },
 ];
@@ -101,10 +108,13 @@ const Events = () => {
       <main className="pt-14 md:pt-20">
         {/* Hero Section */}
         <section className="py-16 relative overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200')" }}
-          />
+          <div className="absolute inset-0">
+            <img
+              src={communityKitchen}
+              alt="Events hero"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="absolute inset-0 bg-primary/85" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection className="text-center text-primary-foreground">
@@ -122,7 +132,6 @@ const Events = () => {
         <section className="py-8 border-b border-border">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              {/* Category Filters */}
               <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
                 <Filter size={18} className="text-muted-foreground flex-shrink-0" />
                 {categories.map((category) => (
@@ -139,8 +148,6 @@ const Events = () => {
                   </button>
                 ))}
               </div>
-
-              {/* View Toggle */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
@@ -169,7 +176,6 @@ const Events = () => {
           </div>
         </section>
 
-        {/* Featured Events */}
         {featuredEvents.length > 0 && (
           <section className="py-12">
             <div className="container mx-auto px-4">
@@ -194,7 +200,6 @@ const Events = () => {
           </section>
         )}
 
-        {/* All Events */}
         <section className="py-12 section-cream">
           <div className="container mx-auto px-4">
             <AnimatedSection>
@@ -202,7 +207,6 @@ const Events = () => {
                 All Upcoming Events
               </h2>
             </AnimatedSection>
-
             {upcomingEvents.length > 0 ? (
               <StaggerContainer
                 className={`grid gap-6 ${
@@ -231,7 +235,6 @@ const Events = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-16 bg-secondary/10">
           <div className="container mx-auto px-4">
             <AnimatedSection className="text-center">
