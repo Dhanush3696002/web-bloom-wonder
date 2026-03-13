@@ -4,6 +4,23 @@ import { MobileLayout } from "@/components/mobile";
 import GalleryLightbox, { GalleryImage } from "@/components/GalleryLightbox";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import biodegradableBag from "@/assets/gallery/biodegradable-bag.jpg";
+import treePlanting from "@/assets/generated/sustainability/tree-planting.jpg";
+import ecoProducts from "@/assets/generated/sustainability/eco-products.jpg";
+import classroomChildren from "@/assets/generated/education/classroom-children.jpg";
+import healthCamp from "@/assets/generated/healthcare/health-camp.jpg";
+import awarenessProgram from "@/assets/generated/community/awareness-program.jpg";
+import helpingElderly from "@/assets/generated/volunteers/helping-elderly.jpg";
+import tailoringTraining from "@/assets/generated/livelihood/tailoring-training.jpg";
+import culturalEvent from "@/assets/generated/events/cultural-event.jpg";
+import schoolSupplies from "@/assets/generated/education/school-supplies.jpg";
+import elderlyCare from "@/assets/generated/healthcare/elderly-care.jpg";
+import communityKitchen from "@/assets/generated/community/community-kitchen.jpg";
+import volunteerTraining from "@/assets/generated/volunteers/volunteer-training.jpg";
+import computerTraining from "@/assets/generated/education/computer-training.jpg";
+import fundraiserGala from "@/assets/generated/events/fundraiser-gala.jpg";
+import graduation from "@/assets/generated/education/graduation.jpg";
+import mobileClinic from "@/assets/generated/healthcare/mobile-clinic.jpg";
+import reliefDistribution from "@/assets/generated/community/relief-distribution.jpg";
 
 const categories = [
   { id: "all", label: "All" },
@@ -26,119 +43,119 @@ const galleryImages: GalleryImage[] = [
   },
   {
     id: "s2",
-    src: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800",
+    src: treePlanting,
     alt: "Tree plantation drive",
     category: "sustainability",
     caption: "Community tree plantation drive to increase green cover",
   },
   {
     id: "s3",
-    src: "https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=800",
+    src: ecoProducts,
     alt: "Eco-friendly packaging workshop",
     category: "sustainability",
     caption: "Training session on eco-friendly packaging techniques",
   },
   {
     id: "1",
-    src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",
+    src: classroomChildren,
     alt: "Children in classroom",
     category: "education",
-    caption: "Students engaged in interactive learning at our education center in Mumbai",
+    caption: "Students engaged in interactive learning at our education center",
   },
   {
     id: "2",
-    src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800",
+    src: healthCamp,
     alt: "Health camp",
     category: "healthcare",
     caption: "Free health check-up camp serving rural community members",
   },
   {
     id: "3",
-    src: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800",
+    src: awarenessProgram,
     alt: "Community gathering",
     category: "community",
     caption: "Community members participating in awareness program",
   },
   {
     id: "4",
-    src: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800",
+    src: helpingElderly,
     alt: "Volunteers helping",
     category: "volunteers",
     caption: "Dedicated volunteers distributing supplies to families in need",
   },
   {
     id: "5",
-    src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800",
+    src: tailoringTraining,
     alt: "Skill training",
     category: "livelihood",
     caption: "Women learning tailoring skills for economic independence",
   },
   {
     id: "6",
-    src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800",
+    src: culturalEvent,
     alt: "Celebration event",
     category: "events",
     caption: "Annual foundation day celebration with beneficiaries",
   },
   {
     id: "7",
-    src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800",
+    src: schoolSupplies,
     alt: "School supplies distribution",
     category: "education",
     caption: "Back to school campaign - distributing supplies to underprivileged children",
   },
   {
     id: "8",
-    src: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800",
+    src: elderlyCare,
     alt: "Senior healthcare",
     category: "healthcare",
     caption: "Health awareness session for senior citizens",
   },
   {
     id: "9",
-    src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800",
+    src: communityKitchen,
     alt: "Community kitchen",
     category: "community",
     caption: "Community kitchen serving nutritious meals daily",
   },
   {
     id: "10",
-    src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800",
+    src: volunteerTraining,
     alt: "Team meeting",
     category: "volunteers",
     caption: "Volunteer orientation and training session",
   },
   {
     id: "11",
-    src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800",
+    src: computerTraining,
     alt: "Computer training",
     category: "livelihood",
     caption: "Digital literacy program for young adults",
   },
   {
     id: "12",
-    src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+    src: fundraiserGala,
     alt: "Fundraiser gala",
     category: "events",
     caption: "Annual charity gala - bringing the community together",
   },
   {
     id: "13",
-    src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800",
+    src: graduation,
     alt: "Graduation ceremony",
     category: "education",
     caption: "Skill development program graduation ceremony",
   },
   {
     id: "14",
-    src: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800",
+    src: mobileClinic,
     alt: "Mobile clinic",
     category: "healthcare",
     caption: "Mobile health clinic reaching remote villages",
   },
   {
     id: "15",
-    src: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800",
+    src: reliefDistribution,
     alt: "Relief distribution",
     category: "community",
     caption: "Emergency relief distribution during natural calamity",
@@ -166,7 +183,7 @@ const Gallery = () => {
         <section className="relative py-20">
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200"
+              src={culturalEvent}
               alt="Gallery hero"
               className="w-full h-full object-cover"
               onError={(e) => {

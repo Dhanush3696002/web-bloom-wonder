@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import NewsCard, { NewsArticle } from "./NewsCard";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
+import graduationImg from "@/assets/generated/education/graduation.jpg";
+import mobileClinc from "@/assets/generated/healthcare/mobile-clinic.jpg";
+import fundraiserGala from "@/assets/generated/events/fundraiser-gala.jpg";
 
 const latestNews: NewsArticle[] = [
   {
@@ -10,7 +13,7 @@ const latestNews: NewsArticle[] = [
     title: "100 Students Graduate from Our Skill Development Program",
     excerpt: "A milestone celebration as our latest batch of students complete vocational training, ready to enter the workforce with confidence.",
     content: "",
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800",
+    image: graduationImg,
     author: "AGR Foundation",
     date: "2026-01-15",
     category: "success-story",
@@ -22,7 +25,7 @@ const latestNews: NewsArticle[] = [
     title: "Launching Mobile Health Clinics in Rural Areas",
     excerpt: "Our new initiative brings essential healthcare services directly to underserved communities through mobile medical units.",
     content: "",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800",
+    image: mobileClinc,
     author: "Dr. Priya Sharma",
     date: "2026-01-10",
     category: "announcement",
@@ -34,7 +37,7 @@ const latestNews: NewsArticle[] = [
     title: "Annual Charity Gala Raises Record ₹50 Lakhs",
     excerpt: "Our community came together for an unforgettable evening of giving, breaking all previous fundraising records.",
     content: "",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+    image: fundraiserGala,
     author: "AGR Foundation",
     date: "2026-01-05",
     category: "event",

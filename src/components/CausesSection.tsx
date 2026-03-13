@@ -1,35 +1,40 @@
 import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 import CauseCard from "./CauseCard";
+import lakeCleaningImg from "@/assets/generated/causes/lake-cleaning-hero.jpg";
+import disabledStudentImg from "@/assets/generated/causes/disabled-student-hero.jpg";
+import waterFilterImg from "@/assets/generated/causes/water-filter-hero.jpg";
+import wheelchairStudentImg from "@/assets/generated/causes/wheelchair-student-hero.jpg";
+import wheelchairElderlyImg from "@/assets/generated/causes/wheelchair-elderly-hero.jpg";
 
 const causes = [
   {
     title: "Cleaning the Lake at Temple",
     description: "Restoring the sacred temple lake by removing waste and pollution to preserve our cultural heritage.",
-    image: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=600&h=400&fit=crop",
+    image: lakeCleaningImg,
     link: "/causes/lake-cleaning",
   },
   {
     title: "Treatment of a Physically Challenged Student",
     description: "Providing medical treatment and rehabilitation support for a student in need of specialized care.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop",
+    image: disabledStudentImg,
     link: "/causes/physically-challenged-treatment",
   },
   {
     title: "Water Filter at a School",
     description: "Installing clean water filtration systems to provide safe drinking water for 500+ students.",
-    image: "https://images.unsplash.com/photo-1594398901394-4e34939a4fd0?w=600&h=400&fit=crop",
+    image: waterFilterImg,
     link: "/causes/water-filter-school",
   },
   {
     title: "Wheelchair for a Student",
     description: "Providing mobility equipment to help a disabled student attend school and live independently.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    image: wheelchairStudentImg,
     link: "/causes/wheelchair-student",
   },
   {
     title: "Wheelchair for an Elderly Person",
     description: "Supporting an elderly person with mobility equipment to improve their quality of life.",
-    image: "https://images.unsplash.com/photo-1516307365426-bea591f05011?w=600&h=400&fit=crop",
+    image: wheelchairElderlyImg,
     link: "/causes/wheelchair-elderly",
   },
 ];
